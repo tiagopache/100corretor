@@ -18,7 +18,8 @@
     "body-parser": "^1.13.3",
     "jade": "^1.11.0",
     "jquery": "^3.2.1",
-    "jsdom": "^11.0.0"
+    "jsdom": "^11.0.0",
+    "async": "^2.4.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
