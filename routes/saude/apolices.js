@@ -64,9 +64,17 @@ router.post('/parcelas/avencer', function (req, res) {
       request(options, function (error, response, body) {
         ++i;
         if (!error && response.statusCode === 200) {
-          var body = JSON.parse(body);
 
-          callback(null, body);
+          try {
+            var body = JSON.parse(body);
+
+            callback(null, body);
+          } catch (e) {
+            console.log(e);
+
+            callback(e || response.statusCode);
+          }
+
         } else {
           callback(error || response.statusCode);
         }
@@ -103,6 +111,8 @@ router.post('/parcelas/avencer', function (req, res) {
     } else {
       // something is wrong!
       console.log(err);
+      res.type('html');
+      res.end(err);
     }
   });
 
