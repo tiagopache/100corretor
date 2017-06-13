@@ -142,30 +142,6 @@ router.get('/', function (req, res) {
             });
         });
     });
-
-
-    // var options = {
-    //     "host": "https://wwws.bradescoseguros.com.br",
-    //     "path": "/100corretor/br/areageral/default.asp?cd_cgccpf=02190592000187&ctrl=RJgJiQDARhXtEqACbQfSAAbHZVgk&id_cia=1&nome=MAXVEL%20COR.%20E%20ADM.%20DE%20SEGS%20S%2FS&ctrl_ps=279594098948625771&cert_dig=N&codoriginal=02190592000187&tpAcesso=M"
-    // }
-
-    // https.get("https://wwws.bradescoseguros.com.br/100corretor/br/areageral/default.asp?cd_cgccpf=02190592000187&ctrl=RJgJiQDARhXtEqACbQfSAAbHZVgk&id_cia=1&nome=MAXVEL%20COR.%20E%20ADM.%20DE%20SEGS%20S%2FS&ctrl_ps=279594098948625771&cert_dig=N&codoriginal=02190592000187&tpAcesso=M", function(response){
-    //     var body = '';
-    //     response.on('data', function(d) {
-    //         body += d;
-    //     });
-    //     response.on('end', function() {
-
-    //         // Data reception is done, do whatever with it!
-    //         //var parsed = JSON.parse(body);
-    //         //callback({
-    //         //    email: parsed.email,
-    //         //    password: parsed.pass
-    //         //});
-    //         console.log(body);
-    //     });        
-    // })
-
 });
 
 module.exports = router;
