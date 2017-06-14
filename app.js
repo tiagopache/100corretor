@@ -1,3 +1,13 @@
+const appInsights = require('applicationinsights');
+
+appInsights.setup()
+            .setAutoDependencyCorrelation(true)
+            .setAutoCollectRequests(true)
+            .setAutoCollectPerformance(true)
+            .setAutoCollectExceptions(true)
+            .setAutoCollectDependencies(true)
+            .start();
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
