@@ -1,13 +1,3 @@
-const appInsights = require('applicationinsights');
-
-appInsights.setup()
-            .setAutoDependencyCorrelation(true)
-            .setAutoCollectRequests(true)
-            .setAutoCollectPerformance(true)
-            .setAutoCollectExceptions(true)
-            .setAutoCollectDependencies(true)
-            .start();
-
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -25,6 +15,18 @@ var app = express();
 var env = process.env.NODE_ENV || 'development';
 app.locals.ENV = env;
 app.locals.ENV_DEVELOPMENT = env == 'development';
+
+if (app.get('env') !== 'development') {
+    const appInsights = require('applicationinsights');
+
+    appInsights.setup()
+                .setAutoDependencyCorrelation(false)
+                .setAutoCollectRequests(true)
+                .setAutoCollectPerformance(true)
+                .setAutoCollectExceptions(true)
+                .setAutoCollectDependencies(true)
+                .start();
+}
 
 // view engine setup  11
 

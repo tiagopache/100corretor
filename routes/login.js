@@ -7,8 +7,11 @@ var url = require('url');
 
 router.get('/', function (req, res) {
     infra.timming("startProcess", () => {
-        var usuario = req.header("usuario");
-        var senha = req.header("senha");
+        var auth = req.header("Authorization").split(' ');
+        var userpassbase64 = infra.base64.decrypt(auth[1]);
+        userpassbase64 = userpassbase64.split(':');
+        var usuario = userpassbase64[0];
+        var senha = userpassbase64[1];
         
         var options = { 
             method: 'POST',
