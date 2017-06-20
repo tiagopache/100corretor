@@ -11,6 +11,7 @@ var login = require('./routes/login');
 var saudeapolices = require('./routes/saude/apolices')
 
 var app = express(); 
+var appInsightsClient = null;
 
 var env = process.env.NODE_ENV || 'development';
 app.locals.ENV = env;
@@ -26,6 +27,8 @@ if (app.get('env') !== 'development') {
                 .setAutoCollectExceptions(true)
                 .setAutoCollectDependencies(true)
                 .start();
+
+    appInsightsClient = appInsights.getClient();
 }
 
 // view engine setup  11
@@ -74,6 +77,12 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
+
+    if (appInsightsClient !== null && appInsightsClient !== undefined) {
+        appInsightsClient.trackException(new Error(err.message));
+        appInsightsClient.trackException(err);
+    }
+    
     res.render('error', {
         message: err.message,
         error: {},
